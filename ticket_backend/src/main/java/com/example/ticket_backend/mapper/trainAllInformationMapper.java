@@ -9,4 +9,6 @@ public interface trainAllInformationMapper {
 
     List<trainAllInformation> searchTrainByStation(String beginStation, String endStation);
 
+    List<trainAllInformation> showTrain();
+
 }

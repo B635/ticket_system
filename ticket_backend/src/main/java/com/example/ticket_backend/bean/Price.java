@@ -3,11 +3,11 @@ package com.example.ticket_backend.bean;
 public class Price {
     private String ticketNo;
 
-    private String seatClass;
+    private int seatClass;
 
     private double price;
 
-    public Price(String ticketNo, String seatClass, double price) {
+    public Price(String ticketNo, int seatClass, double price) {
         this.ticketNo = ticketNo;
         this.seatClass = seatClass;
         this.price = price;
@@ -17,7 +17,7 @@ public class Price {
         return price;
     }
 
-    public String getSeatClass() {
+    public int getSeatClass() {
         return seatClass;
     }
 
@@ -29,7 +29,7 @@ public class Price {
         this.price = price;
     }
 
-    public void setSeatClass(String seatClass) {
+    public void setSeatClass(int seatClass) {
         this.seatClass = seatClass;
     }
 

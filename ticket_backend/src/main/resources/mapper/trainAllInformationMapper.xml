@@ -15,4 +15,10 @@
         WHERE begin_station = #{beginStation} AND end_station = #{endStation}
         ORDER BY train_no;
     </select>
+
+    <select id="showTrain" resultType="com.example.ticket_backend.bean.trainAllInformation">
+        SELECT *
+        FROM ticket."trainAllInformation"
+        ORDER BY train_no;
+    </select>
 </mapper>
