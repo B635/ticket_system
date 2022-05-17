@@ -1,8 +1,11 @@
 package com.example.ticket_backend.bean;
 
 import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class trainAllInformation {
+    public static  DateTimeFormatter formatter = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HH:mm");
     // 火车班次
     private String trainNo;
 
@@ -13,10 +16,10 @@ public class trainAllInformation {
     private String endStation;
 
     // 出发时间
-    private OffsetDateTime startTime;
+    private String startTime;
 
     // 到站时间
-    private OffsetDateTime finishTime;
+    private String finishTime;
 
     // 硬座票数量
     private int hardSeat;
@@ -32,8 +35,8 @@ public class trainAllInformation {
         this.trainNo = trainNo;
         this.beginStation = beginStation;
         this.endStation = endStation;
-        this.startTime = startTime;
-        this.finishTime = finishTime;
+        this.startTime = startTime.format(formatter);
+        this.finishTime = finishTime.format(formatter);
         this.hardSeat = hardSeat;
         this.softSleeper = softSleeper;
         this.notSeat = notSeat;
@@ -52,11 +55,11 @@ public class trainAllInformation {
         return endStation;
     }
 
-    public OffsetDateTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public OffsetDateTime getFinishTime() {
+    public String getFinishTime() {
         return finishTime;
     }
 
@@ -85,11 +88,11 @@ public class trainAllInformation {
     }
 
     public void setStartTime(OffsetDateTime startTime) {
-        this.startTime = startTime;
+        this.startTime = startTime.format(formatter);
     }
 
     public void setFinishTime(OffsetDateTime finishTime) {
-        this.finishTime = finishTime;
+        this.finishTime = finishTime.format(formatter);
     }
 
     public void setHardSeat(int hardSeat) {
