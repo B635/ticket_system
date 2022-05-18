@@ -1,10 +1,10 @@
 <template>
-  <v-container>
   <v-data-table
       disable-pagination
       hide-default-footer
       :headers="headers"
       :items="contents"
+      class="font-weight-black text-h3"
   >
     <template v-slot:top>
       <v-dialog
@@ -132,7 +132,6 @@
       </v-btn>
     </template>
   </v-data-table>
-  </v-container>
 </template>
 
 <script>
