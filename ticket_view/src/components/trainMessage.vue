@@ -1,4 +1,5 @@
 <template>
+  <v-container>
   <v-data-table
       disable-pagination
       hide-default-footer
@@ -131,6 +132,7 @@
       </v-btn>
     </template>
   </v-data-table>
+  </v-container>
 </template>
 
 <script>
