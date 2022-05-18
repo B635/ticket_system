@@ -219,11 +219,13 @@ export default {
       this.dialog = false
     },
     save() {
+      let ls = window.localStorage;
+      let user_account = ls.getItem('account');
       fetch("http://127.0.0.1:8080/addTicket", {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          account: "1",
+          account: user_account,
           trainNo: this.train.trainNo,
           seatClass: this.select,
         })
