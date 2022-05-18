@@ -5,7 +5,7 @@
 
     <insert id="addTicket" parameterType="com.example.ticket_backend.bean.userTicket">
         INSERT INTO ticket."userTicket"(account, "trainNo", "seatClass")
-        VALUES (#{userticket.account}, #{userticket.trainNo}, #{userticket.seatClass});
+        VALUES (#{userTicket.account}, #{userTicket.trainNo}, #{userTicket.seatClass});
     </insert>
 
 </mapper>
