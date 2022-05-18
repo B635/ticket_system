@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.ticket_backend.mapper.priceMapper">
+
+    <select id="searchPrice" resultType="double">
+        SELECT price.price
+        FROM ticket."price"
+        WHERE ticket_no = #{trainNo} AND seat_class = #{seatClass};
+    </select>
+
+</mapper>

@@ -1,6 +1,9 @@
 package com.example.ticket_backend.bean;
 
+import java.util.Map;
+
 public class Price {
+    public static Map<String, Integer> seatConvert = Map.of("hardSeat", 1, "softSleeper", 2, "notSeat", 0);
     private String ticketNo;
 
     private int seatClass;
@@ -10,6 +13,12 @@ public class Price {
     public Price(String ticketNo, int seatClass, double price) {
         this.ticketNo = ticketNo;
         this.seatClass = seatClass;
+        this.price = price;
+    }
+
+    public Price(String ticketNo, String seatClass, double price) {
+        this.ticketNo = ticketNo;
+        this.seatClass = seatConvert.get(seatClass);
         this.price = price;
     }
 
