@@ -8,4 +8,10 @@
         VALUES (#{userTicket.account}, #{userTicket.trainNo}, #{userTicket.seatClass});
     </insert>
 
+    <select id="searchTicket" parameterType="String" resultType="com.example.ticket_backend.bean.ticket">
+        SELECT "trainNo", "seatClass", begin_station, end_station, start_time, finish_time
+        FROM ticket."userTicket", ticket."trainAllInformation"
+        WHERE "trainAllInformation".train_no = "userTicket"."trainNo"
+    </select>
+
 </mapper>
