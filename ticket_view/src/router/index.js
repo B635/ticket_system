@@ -16,11 +16,11 @@ const routes = [
         name: 'Home',
         component: () => import('../view/homePage')
     },
-    // {
-    //     path: '/admin',
-    //     name: 'Admin',
-    //     component: () => import('../views/Admin.vue')
-    // }
+    {
+        path: '/user',
+        name: 'User',
+        component: () => import('../view/userPage')
+    }
 ]
 
 const router = new VueRouter({
