@@ -1,6 +1,8 @@
 package com.example.ticket_backend.service.impl;
 
+import com.example.ticket_backend.bean.seatNumber;
 import com.example.ticket_backend.bean.ticketChange;
+import com.example.ticket_backend.bean.trainInformation;
 import com.example.ticket_backend.mapper.trainAllInformationMapper;
 import com.example.ticket_backend.service.trainAllInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +39,11 @@ public class trainAllInformationServiceImpl implements trainAllInformationServic
     @Override
     public void deleteTrain(String trainNo) {
         trainAllInformationMapper.deleteTrain(trainNo);
+    }
+
+    @Override
+    public void addTrain(seatNumber seatNumber, trainInformation trainInformation) {
+        trainAllInformationMapper.addTrain(trainInformation);
+        trainAllInformationMapper.addTrainSeat(seatNumber);
     }
 }

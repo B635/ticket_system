@@ -1,7 +1,9 @@
 package com.example.ticket_backend.controller;
 
+import com.example.ticket_backend.bean.seatNumber;
 import com.example.ticket_backend.bean.ticketChange;
 import com.example.ticket_backend.bean.trainAllInformation;
+import com.example.ticket_backend.bean.trainInformation;
 import com.example.ticket_backend.service.trainAllInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,5 +49,15 @@ public class ticketController {
             @RequestBody Map<String, String> body
     ) {
         trainService.deleteTrain(body.get("trainNo"));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/addTrain", method = RequestMethod.POST)
+    public void addTrain(
+            @RequestBody Map<String, String> body
+    ) {
+        seatNumber seatNumber = new seatNumber(body.get("trainNo"), Integer.parseInt(body.get("hardSeat")), Integer.parseInt(body.get("softSleeper")),Integer.parseInt(body.get("notSeat")));
+        trainInformation trainInformation = new trainInformation(body.get("trainNo"), body.get("beginStation"), body.get("endStation"), body.get("startTime"), body.get("finishTime"));
+        trainService.addTrain(seatNumber, trainInformation);
     }
 }

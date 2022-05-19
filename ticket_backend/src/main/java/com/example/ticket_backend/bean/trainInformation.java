@@ -1,6 +1,9 @@
 package com.example.ticket_backend.bean;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class trainInformation {
     // 火车班次
@@ -27,6 +30,19 @@ public class trainInformation {
         this.finishTime = finishTime;
     }
 
+    public trainInformation(String trainNo, String beginStation, String endStation,
+                            String startTime, String finishTime) {
+        this.trainNo = trainNo;
+        this.beginStation = beginStation;
+        this.endStation = endStation;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern ("yyyy-MM-dd HH:mm");
+        this.startTime = LocalDateTime.parse(startTime, dtf)
+                .atZone(ZoneId.of("Europe/London"))
+                .toOffsetDateTime();
+        this.finishTime = LocalDateTime.parse(finishTime, dtf)
+                .atZone(ZoneId.of("Europe/London"))
+                .toOffsetDateTime();
+    }
     public String getTrainNo() {
         return trainNo;
     }

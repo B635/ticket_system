@@ -1,7 +1,9 @@
 package com.example.ticket_backend.service;
 
+import com.example.ticket_backend.bean.seatNumber;
 import com.example.ticket_backend.bean.ticketChange;
 import com.example.ticket_backend.bean.trainAllInformation;
+import com.example.ticket_backend.bean.trainInformation;
 
 import java.util.List;
 
@@ -16,4 +18,6 @@ public interface trainAllInformationService {
     void changeTicket(ticketChange ticketChange);
 
     void deleteTrain(String trainNo);
+
+    void addTrain(seatNumber seatNumber, trainInformation trainInformation);
 }

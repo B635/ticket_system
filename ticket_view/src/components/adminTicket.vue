@@ -27,9 +27,136 @@
           >
             搜索
           </v-btn>
+          <v-btn
+              style="margin-left: 10px"
+              color="blue"
+              large
+              @click="addTrain()"
+          >
+            添加路线
+          </v-btn>
         </v-row>
       </v-card-text>
     </v-card>
+    <template>
+      <v-dialog
+          v-model="addDialog"
+          max-width="500px"
+      >
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">新增路线</span>
+          </v-card-title>
+
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                >
+                  <v-text-field
+                      v-model="trainInformation.trainNo"
+                      label="车次"
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                >
+                  <v-text-field
+                      v-model="trainInformation.beginStation"
+                      label="起始站"
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                >
+                  <v-text-field
+                      v-model="trainInformation.endStation"
+                      label="终点站"
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                >
+                  <v-text-field
+                      hint="yyyy-MM-dd HH:mm"
+                      v-model="trainInformation.startTime"
+                      label="出发时间"
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                >
+                  <v-text-field
+                      hint="yyyy-MM-dd HH:mm"
+                      v-model="trainInformation.finishTime"
+                      label="到达时间"
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                >
+                  <v-text-field
+                      v-model="trainInformation.hardSeat"
+                      label="硬座"
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                >
+                  <v-text-field
+                      v-model="trainInformation.softSleeper"
+                      label="软卧"
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                >
+                  <v-text-field
+                      v-model="trainInformation.notSeat"
+                      label="无座"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+                color="blue darken-1"
+                text
+                @click="close()"
+            >
+              Cancel
+            </v-btn>
+            <v-btn
+                color="blue darken-1"
+                text
+                @click="add()"
+            >
+              Sure
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </template>
     <template class="pa-10">
       <v-data-table
           disable-pagination
@@ -155,6 +282,7 @@
 export default {
   name: "adminTicket",
   data: () => ({
+    addDialog: false,
     dialog: false,
     beginStation: '',
     endStation: '',
@@ -164,6 +292,16 @@ export default {
       endStation: '',
       startTime: '',
       finishTime: '',
+    },
+    trainInformation: {
+      trainNo: '',
+      beginStation: '',
+      endStation: '',
+      startTime: '',
+      finishTime: '',
+      hardSeat: '',
+      softSleeper: '',
+      notSeat: '',
     },
     headers: [
       {
@@ -237,6 +375,7 @@ export default {
     },
     close() {
       this.dialog = false
+      this.addDialog = false
     },
     save() {
       fetch("http://127.0.0.1:8080/changeTicket", {
@@ -275,6 +414,28 @@ export default {
       }).then(r => r.json())
           .then (data => this.contents = data)
           .catch(err => console.log(err))
+    },
+    addTrain() {
+      this.addDialog = true
+    },
+    add() {
+      fetch("http://127.0.0.1:8080/addTrain", {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          trainNo: this.trainInformation.trainNo,
+          beginStation: this.trainInformation.beginStation,
+          endStation: this.trainInformation.endStation,
+          startTime: this.trainInformation.startTime,
+          finishTime: this.trainInformation.finishTime,
+          hardSeat: this.trainInformation.hardSeat,
+          softSleeper: this.trainInformation.softSleeper,
+          notSeat: this.trainInformation.notSeat,
+        })
+      }).then()
+          .catch(err => console.log(err))
+      this.addDialog = false;
+      window.location.reload();
     }
   },
   mounted() {

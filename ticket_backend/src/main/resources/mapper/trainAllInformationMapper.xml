@@ -42,6 +42,16 @@
         DELETE
         FROM ticket."trainInformation"
         WHERE train_no = #{trainNo};
-
     </delete>
+
+    <insert id="addTrain">
+        INSERT INTO ticket."trainInformation"(train_no, begin_station, end_station, start_time, finish_time)
+        VALUES (#{trainInformation.trainNo}, #{trainInformation.beginStation},
+                #{trainInformation.endStation}, #{trainInformation.startTime}, #{trainInformation.finishTime});
+    </insert>
+
+    <insert id="addTrainSeat" parameterType="com.example.ticket_backend.bean.seatNumber">
+        INSERT INTO ticket."seatNumber"(train_no, hard_seat, soft_sleeper, not_seat)
+        VALUES (#{seat.trainNo}, #{seat.hardSeat}, #{seat.softSleeper}, #{seat.notSeat});
+    </insert>
 </mapper>
