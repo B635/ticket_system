@@ -25,13 +25,22 @@
         color="#ECEFF1"
     >
       <v-list dense>
-        <v-list-item @click="verifyUser()">
+        <v-list-item @click="verifyHome()">
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>个人信息</v-list-item-title>
+            <v-list-item-title>车票信息</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item @click="verifyUser()">
+          <v-list-item-icon>
+            <v-icon>mdi-ticket</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>已预约车票信息</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item @click="verifyAdmin()">
@@ -88,6 +97,15 @@ export default {
       let is_admin = ls.getItem('is_admin');
       if (is_admin === 'true' || is_admin === 'false') {
         this.$router.replace("/user");
+      } else {
+        this.$router.replace("/")
+      }
+    },
+    verifyHome() {
+      let ls = window.localStorage;
+      let is_admin = ls.getItem('is_admin');
+      if (is_admin === 'true' || is_admin === 'false') {
+        this.$router.replace("/home");
       } else {
         this.$router.replace("/")
       }
