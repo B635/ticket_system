@@ -1,5 +1,6 @@
 package com.example.ticket_backend.service.impl;
 
+import com.example.ticket_backend.bean.ticketChange;
 import com.example.ticket_backend.mapper.trainAllInformationMapper;
 import com.example.ticket_backend.service.trainAllInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class trainAllInformationServiceImpl implements trainAllInformationServic
     @Override
     public List<trainAllInformation> showTrain() {
         return trainAllInformationMapper.showTrain();
+    }
+
+    @Override
+    public void changeTicket(ticketChange ticketChange) {
+        trainAllInformationMapper.changeTicket(ticketChange);
     }
 }

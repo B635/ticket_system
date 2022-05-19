@@ -1,5 +1,6 @@
 package com.example.ticket_backend.controller;
 
+import com.example.ticket_backend.bean.ticketChange;
 import com.example.ticket_backend.bean.trainAllInformation;
 import com.example.ticket_backend.service.trainAllInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,14 @@ public class ticketController {
     @RequestMapping(value = "/showTrain", method = RequestMethod.GET)
     public List<trainAllInformation> showTrain() {
         return trainService.showTrain();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/changeTicket", method = RequestMethod.POST)
+    public void changeTicket(
+            @RequestBody Map<String, String> body
+    ) {
+        ticketChange result = new ticketChange(body.get("trainNo"), body.get("startTime"), body.get("finishTime"));
+        trainService.changeTicket(result);
     }
 }

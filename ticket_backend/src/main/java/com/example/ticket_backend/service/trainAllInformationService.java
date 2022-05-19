@@ -1,5 +1,6 @@
 package com.example.ticket_backend.service;
 
+import com.example.ticket_backend.bean.ticketChange;
 import com.example.ticket_backend.bean.trainAllInformation;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface trainAllInformationService {
     trainAllInformation searchTrain(String trainNo);
 
     List<trainAllInformation> showTrain();
+
+    void changeTicket(ticketChange ticketChange);
 }

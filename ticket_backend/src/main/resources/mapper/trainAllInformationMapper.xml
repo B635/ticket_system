@@ -21,4 +21,11 @@
         FROM ticket."trainAllInformation"
         ORDER BY train_no;
     </select>
+
+    <update id="changeTicket" parameterType="com.example.ticket_backend.bean.ticketChange">
+        UPDATE ticket."trainInformation"
+        SET start_time = #{ticket.startTime},
+            finish_time  = #{ticket.finishTime}
+        WHERE train_no = #{ticket.trainNo};
+    </update>
 </mapper>
