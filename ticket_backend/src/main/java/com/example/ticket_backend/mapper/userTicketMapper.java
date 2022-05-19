@@ -10,4 +10,5 @@ public interface userTicketMapper {
     List<ticket> searchTicket(String account);
     void addTicket(@Param("userTicket") userTicket userTicket);
 
+    void deleteTicket(String account, String trainNo);
 }

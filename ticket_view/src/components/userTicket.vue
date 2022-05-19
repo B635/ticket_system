@@ -52,6 +52,14 @@ export default {
         value: 'actions'
       }
     ],
+    train: {
+      trainNo: '',
+      beginStation: '',
+      endStation: '',
+      startTime: '',
+      finishTime: '',
+      seatClass: '',
+    },
     contents: []
   }),
   methods: {
@@ -69,8 +77,19 @@ export default {
           .catch(err => console.log(err))
     },
     cancelTicket(item) {
+      let ls = window.localStorage;
+      let user_account = ls.getItem('account');
       this.train = Object.assign({}, item)
-      this.dialog=true
+      fetch("http://127.0.0.1:8080/deleteTicket", {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          account: user_account,
+          trainNo: this.train.trainNo,
+        })
+      }).then()
+          .catch(err => console.log(err))
+      window.location.reload();
     },
     save() {
       let ls = window.localStorage;

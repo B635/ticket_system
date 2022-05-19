@@ -35,4 +35,12 @@ public class userTicketController {
     ) {
         return userTicketService.showTicket(body.get("account"));
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteTicket", method = RequestMethod.POST)
+    public void deleteTicket(
+            @RequestBody Map<String, String> body
+    ) {
+        userTicketService.deleteTicket(body.get("account"), body.get("trainNo"));
+    }
 }

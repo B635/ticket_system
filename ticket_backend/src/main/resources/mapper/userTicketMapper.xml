@@ -14,4 +14,10 @@
         WHERE "trainAllInformation".train_no = "userTicket"."trainNo"
     </select>
 
+    <delete id="deleteTicket">
+        DELETE
+        FROM ticket."userTicket"
+        WHERE account = #{account} AND "trainNo" = #{trainNo};
+    </delete>
+
 </mapper>

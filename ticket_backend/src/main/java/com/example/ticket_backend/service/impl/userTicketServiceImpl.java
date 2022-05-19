@@ -23,4 +23,9 @@ public class userTicketServiceImpl implements userTicketService {
     public List<ticket> showTicket(String account) {
         return userTicketMapper.searchTicket(account);
     }
+
+    @Override
+    public void deleteTicket(String account, String trainNo) {
+        userTicketMapper.deleteTicket(account, trainNo);
+    }
 }

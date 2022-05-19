@@ -9,4 +9,6 @@ public interface userTicketService {
     void addTicket(userTicket userTicket);
 
     List<ticket> showTicket(String account);
+
+    void deleteTicket(String account, String trainNo);
 }
