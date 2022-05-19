@@ -14,4 +14,6 @@ public interface trainAllInformationService {
     List<trainAllInformation> showTrain();
 
     void changeTicket(ticketChange ticketChange);
+
+    void deleteTrain(String trainNo);
 }

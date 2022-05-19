@@ -252,18 +252,16 @@ export default {
       this.dialog = false;
       window.location.reload();
     },
-    deleteTicket() {
-      fetch("http://127.0.0.1:8080/changeTicket", {
+    deleteTicket(item) {
+      this.train = Object.assign({}, item)
+      fetch("http://127.0.0.1:8080/deleteTrain", {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           trainNo: this.train.trainNo,
-          startTime: this.train.startTime,
-          finishTime: this.train.finishTime
         })
       }).then()
           .catch(err => console.log(err))
-      this.dialog = false;
       window.location.reload();
     },
     searchTrain() {

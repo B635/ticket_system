@@ -14,4 +14,6 @@ public interface trainAllInformationMapper {
     List<trainAllInformation> showTrain();
 
     void changeTicket(@Param("ticket")ticketChange ticketChange);
+
+    void deleteTrain(String trainNo);
 }

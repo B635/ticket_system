@@ -40,4 +40,12 @@ public class ticketController {
         ticketChange result = new ticketChange(body.get("trainNo"), body.get("startTime"), body.get("finishTime"));
         trainService.changeTicket(result);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteTrain", method = RequestMethod.POST)
+    public void deleteTrain(
+            @RequestBody Map<String, String> body
+    ) {
+        trainService.deleteTrain(body.get("trainNo"));
+    }
 }

@@ -28,4 +28,20 @@
             finish_time  = #{ticket.finishTime}
         WHERE train_no = #{ticket.trainNo};
     </update>
+
+    <delete id="deleteTrain" parameterType="String">
+        DELETE
+        FROM ticket."userTicket"
+        WHERE "trainNo" = #{trainNo};
+        DELETE
+        FROM ticket.price
+        WHERE ticket_no = #{trainNo};
+        DELETE
+        FROM ticket."seatNumber"
+        WHERE train_no = #{trainNo};
+        DELETE
+        FROM ticket."trainInformation"
+        WHERE train_no = #{trainNo};
+
+    </delete>
 </mapper>

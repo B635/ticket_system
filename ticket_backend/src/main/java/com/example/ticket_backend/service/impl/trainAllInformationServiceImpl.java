@@ -33,4 +33,9 @@ public class trainAllInformationServiceImpl implements trainAllInformationServic
     public void changeTicket(ticketChange ticketChange) {
         trainAllInformationMapper.changeTicket(ticketChange);
     }
+
+    @Override
+    public void deleteTrain(String trainNo) {
+        trainAllInformationMapper.deleteTrain(trainNo);
+    }
 }
