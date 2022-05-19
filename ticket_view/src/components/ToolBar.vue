@@ -14,7 +14,7 @@
       <v-spacer></v-spacer>
 
       <v-btn icon>
-        <v-icon>mdi-zodiac-leo</v-icon>
+        <v-icon>mdi-train</v-icon>
       </v-btn>
     </v-app-bar>
 

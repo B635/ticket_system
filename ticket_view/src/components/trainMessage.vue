@@ -1,146 +1,183 @@
 <template>
-  <v-data-table
-      disable-pagination
-      hide-default-footer
-      :headers="headers"
-      :items="contents"
-      class="font-weight-black text-h3"
-  >
-    <template v-slot:top>
-      <v-dialog
-          v-model="dialog"
-          max-width="500px"
-      >
-        <v-card>
-          <v-card-title>
-            <span class="text-h5">预约表单</span>
-          </v-card-title>
+  <v-container>
+  <v-card>
+    <v-card-text>
+      <v-row>
+        <v-text-field
+            v-model="beginStation"
+            label="起始站">
 
-          <v-card-text>
-            <v-container>
-              <v-row>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-text-field
-                      disabled
-                      v-model="train.trainNo"
-                      label="车次"
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-text-field
-                      disabled
-                      v-model="train.beginStation"
-                      label="起始站"
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-text-field
-                      disabled
-                      v-model="train.endStation"
-                      label="终点站"
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-text-field
-                      disabled
-                      v-model="train.startTime"
-                      label="出发时间"
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-text-field
-                      disabled
-                      v-model="train.finishTime"
-                      label="到达时间"
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                >
-                  <v-select
-                      v-model="select"
-                      :items="seats"
-                      :rules="[v => !!v || 'Item is required']"
-                      label="座位"
-                      @change="showPrice(select, train.trainNo)"
-                  ></v-select>
-                </v-col>
-                <v-col
-                    cols="12"
-                    sm="12"
-                    md="12"
-                >
-                  <v-text-field
-                      disabled
-                      v-model="priceSet"
-                      label="价格"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card-text>
+        </v-text-field>
+        <v-text-field
+            label="终点站"
+            v-model="endStation"
+            class="pr-10"
+        >
+          <v-icon
+              slot="prepend"
+              color="green">
+            mdi-minus
+          </v-icon>
+        </v-text-field>
 
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-                color="blue darken-1"
-                text
-                @click="close()"
-            >
-              Cancel
-            </v-btn>
-            <v-btn
-                color="blue darken-1"
-                text
-                @click="save"
-            >
-              Buy
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </template>
-    <template v-slot:item.actions="{ item }">
-      <v-btn
-          color="orange"
-          small
-          @click="bookTicket(item)"
+        <v-btn
+            color="blue"
+            large
+            @click="searchTrain()"
+        >
+          搜索
+        </v-btn>
+      </v-row>
+    </v-card-text>
+  </v-card>
+    <template class="pa-10">
+      <v-data-table
+          disable-pagination
+          hide-default-footer
+          :headers="headers"
+          :items="contents"
+          class="font-weight-black text-h3"
       >
-        预约
-      </v-btn>
+        <template v-slot:top>
+          <v-dialog
+              v-model="dialog"
+              max-width="500px"
+          >
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">预约表单</span>
+              </v-card-title>
+
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-text-field
+                          disabled
+                          v-model="train.trainNo"
+                          label="车次"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-text-field
+                          disabled
+                          v-model="train.beginStation"
+                          label="起始站"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-text-field
+                          disabled
+                          v-model="train.endStation"
+                          label="终点站"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-text-field
+                          disabled
+                          v-model="train.startTime"
+                          label="出发时间"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-text-field
+                          disabled
+                          v-model="train.finishTime"
+                          label="到达时间"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="6"
+                        md="4"
+                    >
+                      <v-select
+                          v-model="select"
+                          :items="seats"
+                          :rules="[v => !!v || 'Item is required']"
+                          label="座位"
+                          @change="showPrice(select, train.trainNo)"
+                      ></v-select>
+                    </v-col>
+                    <v-col
+                        cols="12"
+                        sm="12"
+                        md="12"
+                    >
+                      <v-text-field
+                          disabled
+                          v-model="priceSet"
+                          label="价格"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                    color="blue darken-1"
+                    text
+                    @click="close()"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                    color="blue darken-1"
+                    text
+                    @click="save"
+                >
+                  Buy
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </template>
+        <template v-slot:item.actions="{ item }">
+          <v-btn
+              color="orange"
+              small
+              @click="bookTicket(item)"
+          >
+            预约
+          </v-btn>
+        </template>
+      </v-data-table>
     </template>
-  </v-data-table>
+  </v-container>
 </template>
 
 <script>
+
 export default {
   name: "trainMessage",
   data: () => ({
     dialog: false,
     select: '',
     priceSet: '',
+    beginStation: '',
+    endStation: '',
     train: {
       trainNo: '',
       beginStation: '',
@@ -244,6 +281,18 @@ export default {
         })
       }).then(r => r.text())
           .then(data => this.priceSet = data)
+          .catch(err => console.log(err))
+    },
+    searchTrain() {
+      fetch("http://127.0.0.1:8080/searchTrain", {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          beginStation: this.beginStation,
+          endStation: this.endStation
+        })
+      }).then(r => r.json())
+          .then (data => this.contents = data)
           .catch(err => console.log(err))
     }
   },
